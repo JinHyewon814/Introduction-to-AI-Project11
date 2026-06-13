@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-24",
+  "tasks": [
+    {
+      "id": 1,
+      "name": "과제 1",
+      "duration": 0,
+      "color": "#A3D5A3",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "name": "과제 2",
+      "duration": 0,
+      "color": "#F5B7C6",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "name": "과제 3",
+      "duration": 0,
+      "color": "#C2A1D9",
+      "completed": false
+    }
+  ],
+  "blocks": []
+}
