@@ -21,3 +21,14 @@ class Scheduler:
         for block in blocks:
             occupied.update(range(block.start, block.start + block.length))
         return occupied
+
+    @staticmethod
+    def find_first_available_start(blocks: List[Block], candidate_length: int) -> int | None:
+        max_cells = 24 * 6
+        if candidate_length <= 0 or candidate_length > max_cells:
+            return None
+
+        for candidate_start in range(max_cells - candidate_length + 1):
+            if Scheduler.can_place(blocks, candidate_start, candidate_length):
+                return candidate_start
+        return None

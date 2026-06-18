@@ -22,3 +22,6 @@ class TaskDialog(QDialog):
     @property
     def task_name(self) -> str:
         return self.name_input.text().strip()
+
+    def set_task_name(self, name: str):
+        self.name_input.setText(name)
