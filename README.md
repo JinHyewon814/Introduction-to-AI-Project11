@@ -1,7 +1,9 @@
 # Introduction-to-AI-Project11
 
 실행 화면
-Uploading timeTable_run.mp4…
+https://github.com/user-attachments/assets/0410502a-2a25-43d7-b749-3845abefbd12
+
+
 
 각 팀원별 역할 및 기여도
 박주원 (기여도 30%): Task 블록 크기 고정, 날짜 설정 등 UI 개선, 발표
