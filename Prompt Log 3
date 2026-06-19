@@ -1,20 +1,8 @@
-왼쪽에서 Task를 드래그해서 시간에 추가할 수 있게 해줘 그리고 마지막에 전체적으로 UI를 깔끔하게 수정해주고, 드래그해서 Task를 시간표에 추가하고 나서도 드래그로 위치 변경할 수 있게 해줘
+1.
+Task 체크리스트 토글 기능 추가
+-  토글 선택하면 해당 Task 시간을 오른쪽 시간표에 추가
+시간 설정 기능 추가 
+- 팝업창 띄워서 (숫자입력)H (숫자입력)M 포맷
 
-답변
-완료했습니다.
-이제 동작은 이렇게 됩니다:
-왼쪽 Task 카드를 드래그해서 오른쪽 시간표 원하는 칸에 드롭하면 해당 시간에 추가됩니다.
-Task 시간이 아직 0이면 드롭할 때 H / M 시간 입력 팝업이 뜹니다.
-시간표에 이미 추가된 Task 블록도 다시 드래그해서 다른 시간 칸으로 이동할 수 있습니다.
-겹치는 시간에는 드롭되지 않도록 막았습니다.
-드롭/이동 후 저장되고, 왼쪽 체크 상태도 같이 동기화됩니다.
-전체 UI도 흰색 패널, 정돈된 여백, 제목, 둥근 카드/시간표 블록 스타일로 정리했습니다.
-수정한 주요 파일:
-[task_item.py (line 6)](c:/Users/USER/Desktop/Introduction-to-AI-Project11-kimminjae/Introduction-to-AI-Project11-kimminjae/TimePlanner/ui/task_item.py:6)
-[timetable.py (line 59)](c:/Users/USER/Desktop/Introduction-to-AI-Project11-kimminjae/Introduction-to-AI-Project11-kimminjae/TimePlanner/ui/timetable.py:59)
-[main_window.py (line 127)](c:/Users/USER/Desktop/Introduction-to-AI-Project11-kimminjae/Introduction-to-AI-Project11-kimminjae/TimePlanner/ui/main_window.py:127)
-[left_panel.py (line 42)](c:/Users/USER/Desktop/Introduction-to-AI-Project11-kimminjae/Introduction-to-AI-Project11-kimminjae/TimePlanner/ui/left_panel.py:42)
-검증:
-Python AST 문법 검사 통과
-주요 UI 모듈 import 확인 통과
-GUI를 실제로 띄워서 마우스 드래그까지는 이 환경에서 직접 확인하지 못했지만, PySide6 import와 이벤트 코드 경로는 정상 확인했습니다.
+2.
+왼쪽에서 Task를 드래그해서 시간에 추가할 수 있게 해줘 그리고 마지막에 전체적으로 UI를 깔끔하게 수정해주고, 드래그해서 Task를 시간표에 추가하고 나서도 드래그로 위치 변경할 수 있게 해줘
