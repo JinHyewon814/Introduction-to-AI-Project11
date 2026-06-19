@@ -1,0 +1,494 @@
+프로젝트명
+
+Time Planner
+
+목표
+
+사용자가 작업(Task)을 생성하고, 예상 소요시간을 입력한 뒤, 드래그하여 24시간 타임테이블에 배치하는 데스크탑 프로그램.
+
+Windows Desktop 기준.
+
+Python + PySide6 기반.
+
+전체 UI
+-------------------------------------------------------------
+|                       YYYY-MM-DD                          |
+|-----------------------------------------------------------|
+|                                                           |
+|  Task List                    Time Table                 |
+|                                                   01~12   |
+|  Task                                              13~24  |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+|                                                   Grid    |
+-------------------------------------------------------------
+
+좌측
+
+날짜
+Task 목록
+버튼
+
+우측
+
+오전
+오후
+
+타임테이블
+
+타임테이블
+구조
+
+오전
+
+6 × 12
+
+오후
+
+6 × 12
+
+총
+
+6 × 24
+셀 크기
+
+모든 셀은
+
+width == height
+
+정사각형 유지.
+
+창이 커져도 비율 유지.
+
+시간 표현
+
+세로
+
+01
+02
+03
+...
+24
+
+가로
+
+0
+10
+20
+30
+40
+50
+
+즉
+
+한 셀은
+
+10분
+
+을 의미.
+
+Task
+
+Task는
+
+□ 공부
+
+□ 운동
+
+■ 프로젝트
+
+형태.
+
+왼쪽 사각형은
+
+완료 여부.
+
+Task 생성
+버튼 클릭
+
+↓
+
+입력 팝업
+
+작업명을 입력하세요
+
+[____________]
+
+        확인
+
+↓
+
+Task 추가
+
+Task 삭제 / 수정
+
+Task 우클릭
+
+컨텍스트 메뉴
+
+수정
+
+삭제
+예상시간 입력
+
+Task 이름
+
+좌클릭
+
+↓
+
+모달 팝업
+
+배경
+
+반투명 회색
+
+------------------------------
+
+예상 시간을 입력하세요
+
+[  ] H
+
+[  ] M
+
+        확인
+
+------------------------------
+
+시간 입력
+
+예시
+
+1 H
+
+20 M
+
+↓
+
+Task에
+
+(1h 20m)
+
+표시.
+
+Drag & Drop
+
+Task 이름을
+
+드래그 가능.
+
+드래그 시작 시
+
+Task는
+
+Block으로 변환.
+
+예시
+
+████████████
+
+ Task 1
+Block 길이
+
+10분 = 1칸
+
+예시
+
+40분
+
+=
+
+4칸
+1시간
+
+=
+
+6칸
+1시간20분
+
+=
+
+8칸
+
+=
+6칸 + 2칸
+Block 표현
+
+최대
+
+가로 6칸
+
+넘어가면
+
+자동 줄바꿈.
+
+예시
+
+1시간20분
+
+██████
+
+██
+
+2시간
+
+██████
+
+██████
+
+3시간40분
+
+██████
+
+██████
+
+██████
+
+████
+
+즉
+
+블록의
+
+가로 최대 길이는
+
+항상
+
+6칸.
+
+Drag 중 동작
+
+마우스를 움직이면
+
+현재 위치에 맞게
+
+Preview Block 표시.
+
+반투명.
+
+Drop
+
+Drop하면
+
+Preview 제거.
+
+Grid에 Block 생성.
+
+배치 규칙
+
+예시
+
+18:10
+
+~
+
+19:30
+
+이면
+
+18시
+
+10
+
+20
+
+30
+
+40
+
+50
+
+19시
+
+00
+
+10
+
+20
+
+셀 점유.
+
+이미 셀이 점유된 경우
+
+Drop 불가.
+
+빨간색 Preview.
+
+Block 이동
+
+기존 Block도
+
+드래그 가능.
+
+Drop하면
+
+위치 변경.
+
+Block 삭제
+
+우클릭
+
+↓
+
+삭제.
+
+색상
+
+Task 생성 시
+
+자동 랜덤 색.
+
+파스텔톤.
+
+예시
+
+Blue
+
+Green
+
+Pink
+
+Purple
+
+Orange
+
+Sky
+
+Mint
+데이터
+
+Task
+
+class Task:
+
+    id
+
+    name
+
+    duration
+
+    color
+
+    completed
+
+Block
+
+class Block:
+
+    task_id
+
+    start_cell
+
+    end_cell
+저장
+
+자동 저장
+
+planner.json
+
+프로그램 종료 시
+
+저장.
+
+실행 시
+
+자동 불러오기.
+
+JSON 구조
+{
+  "date": "2025-01-01",
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Study",
+      "duration": 80,
+      "color": "#74A8FF",
+      "completed": false
+    }
+  ],
+  "blocks": [
+    {
+      "task_id": 1,
+      "start": 103,
+      "length": 8
+    }
+  ]
+}
+권장 프로젝트 구조
+time_planner/
+
+│
+├── main.py
+│
+├── assets/
+│   ├── icons/
+│   ├── fonts/
+│   └── style.qss
+│
+├── core/
+│   ├── models.py          # Task, Block 데이터 모델
+│   ├── storage.py         # JSON 저장/불러오기
+│   ├── constants.py       # 셀 크기, 색상 등
+│   ├── scheduler.py       # 블록 배치 및 충돌 검사
+│   └── utils.py
+│
+├── ui/
+│   ├── main_window.py
+│   ├── left_panel.py
+│   ├── task_list.py
+│   ├── task_item.py
+│   ├── timetable.py       # 6×24 그리드
+│   ├── block_item.py      # 드래그 가능한 블록
+│   ├── overlay.py         # 반투명 배경
+│   ├── dialogs/
+│   │     ├── task_dialog.py
+│   │     └── duration_dialog.py
+│   └── widgets/
+│         ├── square_grid.py
+│         ├── grid_cell.py
+│         └── drag_preview.py
+│
+├── controller/
+│   ├── task_controller.py
+│   ├── drag_controller.py
+│   └── planner_controller.py
+│
+├── resources/
+│
+├── data/
+│   └── planner.json
+│
+└── README.md
+이벤트 흐름
++ 클릭
+    ↓
+Task 생성
+    ↓
+Task 목록 표시
+    ↓
+Task 클릭
+    ↓
+예상시간 입력
+    ↓
+Task에 시간 표시
+    ↓
+Task 드래그
+    ↓
+Preview 생성
+    ↓
+Drop
+    ↓
+충돌 검사
+    ↓
+가능하면 Block 생성
+    ↓
+planner.json 저장
